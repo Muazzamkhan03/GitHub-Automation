@@ -14,7 +14,7 @@ isPrivate = False
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--name","-n",type=str, dest="name")
-parser.add_argument("--private", "-p", dest="is_private")
+parser.add_argument("--private", "-p", dest="is_private",action="store_true")
 
 arguments = parser.parse_args()
 repo = arguments.name

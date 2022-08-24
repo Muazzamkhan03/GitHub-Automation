@@ -4,9 +4,14 @@
 int main(int argc, char *argv[]){
     std::string path = argv[1];
     std::string dirName = argv[2];
+    std::string cond;
     bool isPrivate = false;
 
-    if(strcmp(argv[3],"-p")==0){
+    if(argc == 4){
+        cond = argv[3];
+    }
+
+    if(cond == "-p"){
         isPrivate = true;
     }
 
@@ -14,7 +19,7 @@ int main(int argc, char *argv[]){
     createGitIgnore(dirName, path);
     initiateGit(dirName, path);
     makeHubRepo(dirName, isPrivate);
-    connectGit(dirName);
+    connectGit(dirName,path);
 
     return 0;
 }
