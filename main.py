@@ -1,6 +1,7 @@
 import requests 
 import json
-from secretToken import token 
+from secretToken import token  #This is bringing in the token saved in other file. This token is generated from github -> account ->
+                                    # settings -> Developer settings -> Personal access tokens 
 
 apiUrl = "https://api.github.com"
 header = {
