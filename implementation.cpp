@@ -20,3 +20,17 @@ void connectGit(std::string name){
     std::string command = "git remote add origin git@github.com:Muazzamkhan03/"+name+".git; git push -u origin main";
     system(command.c_str());
 }
+
+void makeHubRepo(std::string name, bool Private){
+    std::string command;
+    
+    if(Private){
+        command = "python3 main.py --name " + name + " --private";
+        system(command.c_str());
+    }
+    else{
+        command = "python3 main.py --name " + name;
+        system(command.c_str());
+    }
+
+}
