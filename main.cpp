@@ -27,6 +27,6 @@ void createGitIgnore(std::string name, std::string path){
 }
 
 void initiateGit(std::string name, std::string path){
-    std::string command = "cd " + path + "; " + "cd " + name + "; " + "git init; git add -A; git commit -m \"Initial commit with             gitignore\"";
+    std::string command = "cd " + path + "; " + "cd " + name + "; " + "git init; git add -A; git commit -m \"Initial commit with gitignore\"";
     system(command.c_str());
 }
