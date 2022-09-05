@@ -1,36 +1,46 @@
 # include "header.hpp"
 
-void createDir(std::string name, std::string path){
-    std::string command = "cd " + path + "; " + "mkdir " + name;
-    system(command.c_str());
-    
+gitAuto::gitAuto(std::string p, std::string n, bool i):path(p),dirName(n),isPrivate(i){}
+
+void gitAuto::createDir(){
+    std::string command = "cd " + path + "; " + "mkdir " + dirName;
+    system(command.c_str()); 
 }
 
-void createGitIgnore(std::string name, std::string path){
-    std::string command = "cd " + path + "; " + "cd " + name + "; " + "touch .gitignore";
-    system(command.c_str());
-}
-
-void initiateGit(std::string name, std::string path){
-    std::string command = "cd " + path + "; " + "cd " + name + "; " + "git init; git add -A; git commit -m \"Initial commit with gitignore\"";
+void gitAuto::createGitIgnore(){
+    std::string command = "cd " + path + "; " + "cd " + dirName + "; " + "touch .gitignore";
     system(command.c_str());
 }
 
-void connectGit(std::string name, std::string path){
-    std::string command = "cd " + path + "; " + "cd " + name + "; " + "git remote add origin git@github.com:Muazzamkhan03/"+name+".git; git branch -M main; git push -u origin main";
+void gitAuto::initiateGit(){
+    std::string command = "cd " + path + "; " + "cd " + dirName + "; " + "git init; git add -A; git commit -m \"Initial commit with gitignore\"";
     system(command.c_str());
 }
 
-void makeHubRepo(std::string name, bool Private){
+void gitAuto::connectGit(){
+    std::string command = "cd " + path + "; " + "cd " + dirName + "; " + "git remote add origin git@github.com:Muazzamkhan03/"+dirName+".git; git push -u origin master";
+    system(command.c_str());
+}
+
+void gitAuto::makeHubRepo(){
     std::string command;
     
-    if(Private){
-        command = "python3 main.py --name " + name + " --private";
+    if(isPrivate){
+        command = "python3 main.py --name " + dirName + " --private";
         system(command.c_str());
     }
     else{
-        command = "python3 main.py --name " + name;
+        command = "python3 main.py --name " + dirName;
         system(command.c_str());
     }
+}
 
+runner::runner(std::string p, std::string n, bool i):gitAuto(p,n,i){}
+
+void runner::run(){
+    createDir();
+    createGitIgnore();
+    initiateGit();
+    makeHubRepo();
+    connectGit();
 }

@@ -1,9 +1,8 @@
 # include "header.hpp"
-# include <string.h>
 
 int main(int argc, char *argv[]){
-    std::string path = argv[1];
-    std::string dirName = argv[2];
+    std::string pathName = argv[1];
+    std::string directoryName = argv[2];
     std::string cond;
     bool isPrivate = false;
 
@@ -15,11 +14,8 @@ int main(int argc, char *argv[]){
         isPrivate = true;
     }
 
-    createDir(dirName, path);
-    createGitIgnore(dirName, path);
-    initiateGit(dirName, path);
-    makeHubRepo(dirName, isPrivate);
-    connectGit(dirName,path);
+    runner engine(pathName,directoryName,isPrivate);
+    engine.run();
 
     return 0;
 }
